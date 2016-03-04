@@ -1,0 +1,29 @@
+  <form id="email">
+    <p class="question">Insert here your email to receive the PDF report with your answers.</p>
+    <input style="height: 3em; font-size: 1em" type="email" value="" size="50" name="email" placeholder="insert.here@your.email"/><br/>
+    <input type="radio" id="gender_m" value="M" name="gender"/><label for="gender_m">I am a father</label><br/>
+    <input type="radio" id="gender_f" value="F" name="gender"/><label for="gender_f">I am a mother</label><br/>
+    <input class="button button2" onClick="sendstuff()" type="submit" value="SUBMIT"/>
+  </form>
+
+    <script>
+
+  $("#sendstuff").on("click",function() {
+
+        var data = $('#EPDS').serializeArray().concat($('#GAD').serializeArray().concat($('#PHQ').serializeArray().concat($('#email').serializeArray())));
+
+        $.ajax({
+              type: "POST",
+              url: "/secondpage",
+              data: data,
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              success: function(data){
+                alert(data);
+              },
+              failure: function(errMsg) {
+                  alert(errMsg);
+              }
+        });
+      });
+    </script>
