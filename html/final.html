@@ -5,25 +5,4 @@
     <input type="radio" id="gender_f" value="F" name="gender"/><label for="gender_f">I am a mother</label><br/>
   </form>
   <input class="button button2" onClick="sendstuff()" type="submit" value="SUBMIT"/>
-
-    <script>
-
-  $("#sendstuff").on("click",function() {
-
-        var data = $('#EPDS').serializeArray().concat($('#GAD').serializeArray().concat($('#PHQ').serializeArray().concat($('#email').serializeArray())));
-
-        $.ajax({
-              type: "POST",
-              url: "/secondpage",
-              data: data,
-              contentType: "application/json; charset=utf-8",
-              dataType: "json",
-              success: function(data){
-                alert(data);
-              },
-              failure: function(errMsg) {
-                  alert(errMsg);
-              }
-        });
-      });
-    </script>
+  <h3 id="serverresponse" style="text-align:center;background:orange; color:black;"></h3>

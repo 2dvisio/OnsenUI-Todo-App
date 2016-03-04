@@ -14,31 +14,32 @@
   <link rel="stylesheet" href="lib/onsen/css/onsenui.css">
   <link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">
   <link rel="stylesheet" href="style.css">
-
-
-  <script>
-
-function sendstuff() {
-      var xhttp = new XMLHttpRequest();
-
-      xhttp.onreadystatechange = function() {
-        if (xhttp.readyState == 4 && xhttp.status == 200) {
-
-          // document.getElementById("demo").innerHTML = xhttp.responseText;
-
-          alert("done!");
-        } else {
-          alert("error!");
-        }
-      };
-
-      xhttp.open("POST", "ajax_info.txt", true);
-      xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-      xhttp.send(JSON.stringify({name:"John Rambo", time:"2pm"}));
-    }
-  </script>
-
 </head>
+
+    <script>
+
+  function sendstuff() {
+
+        var data = $('#EPDS').serializeArray().concat($('#GAD').serializeArray().concat($('#PHQ').serializeArray().concat($('#email').serializeArray())));
+
+        $.ajax({
+              type: "POST",
+              url: "/secondpage",
+              data: JSON.stringify(data),
+              contentType: "application/json; charset=utf-8",
+              dataType: "text"
+	})
+        .done(
+              function(q,d,data){
+               $('#serverresponse').html('Message sent');
+              })
+        .fail(
+              function(q,d,errMsg) {
+                $('#serverresponse').html('Cannot send message, check your email');
+              });
+      }
+    </script>
+
 
 <body>
 
