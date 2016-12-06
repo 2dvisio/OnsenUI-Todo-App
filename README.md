@@ -1,4 +1,3 @@
-# OnsenUI-Todo-App
-Onsen UI 2.0 example To-Do app implemented in Vanilla JavaScript.
-
-Try it here: http://frankdiox.github.io/OnsenUI-Todo-App
+This is a test demo for the BIODESIGN programme.
+The project creates an interface to the service provided by the node server to
+complete EDPS, PHQ, GAD questionnaires and generate a PDF out of them.
